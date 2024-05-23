@@ -11,13 +11,15 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if(!empty($data->gene) && !empty($data->drug) && !empty($data->response)) {
-    $query = "INSERT INTO pharmacogenomics (gene, drug, response) VALUES (:gene, :drug, :response)";
+if(!empty($data->patient_id) && !empty($data->drug_id) && !empty($data->response) && !empty($data->dosage)) {
+    $query = "INSERT INTO drug_responses (patient_id, drug_id, response, dosage, adverse_reactions) VALUES (:patient_id, :drug_id, :response, :dosage, :adverse_reactions)";
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(":gene", $data->gene);
-    $stmt->bindParam(":drug", $data->drug);
+    $stmt->bindParam(":patient_id", $data->patient_id);
+    $stmt->bindParam(":drug_id", $data->drug_id);
     $stmt->bindParam(":response", $data->response);
+    $stmt->bindParam(":dosage", $data->dosage);
+    $stmt->bindParam(":adverse_reactions", $data->adverse_reactions);
 
     if($stmt->execute()) {
         http_response_code(201);

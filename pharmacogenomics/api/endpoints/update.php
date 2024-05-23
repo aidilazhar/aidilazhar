@@ -11,14 +11,16 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if(!empty($data->id) && !empty($data->gene) && !empty($data->drug) && !empty($data->response)) {
-    $query = "UPDATE pharmacogenomics SET gene = :gene, drug = :drug, response = :response WHERE id = :id";
+if(!empty($data->response_id) && !empty($data->patient_id) && !empty($data->drug_id) && !empty($data->response) && !empty($data->dosage)) {
+    $query = "UPDATE drug_responses SET patient_id = :patient_id, drug_id = :drug_id, response = :response, dosage = :dosage, adverse_reactions = :adverse_reactions WHERE response_id = :response_id";
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(":id", $data->id);
-    $stmt->bindParam(":gene", $data->gene);
-    $stmt->bindParam(":drug", $data->drug);
+    $stmt->bindParam(":response_id", $data->response_id);
+    $stmt->bindParam(":patient_id", $data->patient_id);
+    $stmt->bindParam(":drug_id", $data->drug_id);
     $stmt->bindParam(":response", $data->response);
+    $stmt->bindParam(":dosage", $data->dosage);
+    $stmt->bindParam(":adverse_reactions", $data->adverse_reactions);
 
     if($stmt->execute()) {
         http_response_code(200);

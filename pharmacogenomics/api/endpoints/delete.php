@@ -11,11 +11,11 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if(!empty($data->id)) {
-    $query = "DELETE FROM pharmacogenomics WHERE id = :id";
+if(!empty($data->response_id)) {
+    $query = "DELETE FROM drug_responses WHERE response_id = :response_id";
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(":id", $data->id);
+    $stmt->bindParam(":response_id", $data->response_id);
 
     if($stmt->execute()) {
         http_response_code(200);

@@ -6,7 +6,7 @@ include_once '../config/database.php';
 $database = new Database();
 $db = $database->getConnection();
 
-$query = "SELECT id, gene, drug, response FROM pharmacogenomics";
+$query = "SELECT response_id, patient_id, drug_id, response, dosage, adverse_reactions FROM drug_responses";
 $stmt = $db->prepare($query);
 $stmt->execute();
 
@@ -18,10 +18,12 @@ if($num > 0) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $record_item = array(
-            "id" => $id,
-            "gene" => $gene,
-            "drug" => $drug,
-            "response" => $response
+            "response_id" => $response_id,
+            "patient_id" => $patient_id,
+            "drug_id" => $drug_id,
+            "response" => $response,
+            "dosage" => $dosage,
+            "adverse_reactions" => $adverse_reactions
         );
         array_push($records_arr["records"], $record_item);
     }
