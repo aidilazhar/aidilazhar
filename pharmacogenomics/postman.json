@@ -1,0 +1,150 @@
+{
+    "collection": {
+      "info": {
+        "_postman_id": "1e3de5e3-a33b-40c2-870b-3dd68a8664aa",
+        "name": "Aidil Azhar - Pharmacogenomics",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "updatedAt": "2024-05-23T15:12:16.000Z",
+        "uid": "10972726-1e3de5e3-a33b-40c2-870b-3dd68a8664aa",
+        "createdAt": null,
+        "lastUpdatedBy": null
+      },
+      "item": [
+        {
+          "name": "Drug Responses - Read",
+          "id": "ee1885ca-f7b4-4bcb-b3b5-4f079cd8af76",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://pharmacogenomics.aidilazhar.org/api/endpoints/read",
+              "protocol": "https",
+              "host": [
+                "pharmacogenomics",
+                "aidilazhar",
+                "org"
+              ],
+              "path": [
+                "api",
+                "endpoints",
+                "read"
+              ]
+            }
+          },
+          "response": [],
+          "uid": "10972726-ee1885ca-f7b4-4bcb-b3b5-4f079cd8af76"
+        },
+        {
+          "name": "Drug Responses - Create",
+          "id": "bef57813-2f3a-43ed-8a1a-850137352c84",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"patient_id\": 1,\r\n  \"drug_id\": 1,\r\n  \"response\": \"Reduced metabolism\",\r\n  \"dosage\": \"5 mg\",\r\n  \"adverse_reactions\": \"Increased risk of bleeding\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://pharmacogenomics.aidilazhar.org/api/endpoints/create",
+              "protocol": "https",
+              "host": [
+                "pharmacogenomics",
+                "aidilazhar",
+                "org"
+              ],
+              "path": [
+                "api",
+                "endpoints",
+                "create"
+              ]
+            }
+          },
+          "response": [],
+          "uid": "10972726-bef57813-2f3a-43ed-8a1a-850137352c84"
+        },
+        {
+          "name": "Drug Responses - Update",
+          "id": "29d3a5cc-bd1c-4e5a-b98e-ad4022d79d44",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"response_id\": 1,\r\n  \"patient_id\": 1,\r\n  \"drug_id\": 1,\r\n  \"response\": \"Increased metabolism\",\r\n  \"dosage\": \"10 mg\",\r\n  \"adverse_reactions\": \"None\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://pharmacogenomics.aidilazhar.org/api/endpoints/update",
+              "protocol": "https",
+              "host": [
+                "pharmacogenomics",
+                "aidilazhar",
+                "org"
+              ],
+              "path": [
+                "api",
+                "endpoints",
+                "update"
+              ]
+            }
+          },
+          "response": [],
+          "uid": "10972726-29d3a5cc-bd1c-4e5a-b98e-ad4022d79d44"
+        },
+        {
+          "name": "Drug Responses - Delete",
+          "id": "d9ad4264-453e-4d04-81eb-d1c0130c2bbd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"response_id\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://pharmacogenomics.aidilazhar.org/api/endpoints/delete",
+              "protocol": "https",
+              "host": [
+                "pharmacogenomics",
+                "aidilazhar",
+                "org"
+              ],
+              "path": [
+                "api",
+                "endpoints",
+                "delete"
+              ]
+            }
+          },
+          "response": [],
+          "uid": "10972726-d9ad4264-453e-4d04-81eb-d1c0130c2bbd"
+        }
+      ]
+    }
+  }
