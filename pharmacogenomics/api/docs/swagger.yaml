@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  title: Pharmacogenomics API
+  description: This is a simple API to handle CRUD operations for the drug_responses table in a pharmacogenomics database.
+  version: 1.0.0
+servers:
+  - url: https://pharmacogenomics.aidilazhar.org/api/endpoints
+paths:
+  /create:
+    post:
+      summary: Create a new drug response record
+      requestBody:
+        description: Drug response record to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_id:
+                  type: integer
+                drug_id:
+                  type: integer
+                response:
+                  type: string
+                dosage:
+                  type: string
+                adverse_reactions:
+                  type: string
+              required:
+                - patient_id
+                - drug_id
+                - response
+                - dosage
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Record was created.
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to create record. Data is incomplete.
+        '503':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to create record.
+  /read:
+    get:
+      summary: Retrieve all drug response records
+      responses:
+        '200':
+          description: A list of drug response records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        response_id:
+                          type: integer
+                        patient_id:
+                          type: integer
+                        drug_id:
+                          type: integer
+                        response:
+                          type: string
+                        dosage:
+                          type: string
+                        adverse_reactions:
+                          type: string
+        '404':
+          description: No records found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No records found.
+  /update:
+    post:
+      summary: Update an existing drug response record
+      requestBody:
+        description: Drug response record to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                response_id:
+                  type: integer
+                patient_id:
+                  type: integer
+                drug_id:
+                  type: integer
+                response:
+                  type: string
+                dosage:
+                  type: string
+                adverse_reactions:
+                  type: string
+              required:
+                - response_id
+                - patient_id
+                - drug_id
+                - response
+                - dosage
+      responses:
+        '200':
+          description: Record updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Record was updated.
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to update record. Data is incomplete.
+        '503':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to update record.
+  /delete:
+    post:
+      summary: Delete an existing drug response record
+      requestBody:
+        description: Drug response record to delete
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                response_id:
+                  type: integer
+              required:
+                - response_id
+      responses:
+        '200':
+          description: Record deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Record was deleted.
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to delete record. Data is incomplete.
+        '503':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to delete record.
